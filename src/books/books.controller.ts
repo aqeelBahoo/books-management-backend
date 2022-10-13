@@ -2,7 +2,7 @@ import { Controller, Get, Res, HttpStatus, Query, Param } from '@nestjs/common';
 import { BooksService } from './books.service';
 import { Book } from './interfaces/book';
 
-@Controller('books')
+@Controller('book/search')
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 

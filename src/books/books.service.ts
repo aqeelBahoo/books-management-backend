@@ -19,15 +19,19 @@ export class BooksService {
   }
 
   searchBooks(q: any): Array<Book> {
-    console.log(q);
     return books.filter((b: Book) => {
       return (
         (!q.title || b.title?.toLowerCase() === q.title.toLowerCase()) &&
+        (!q.price || b.published?.price === Number(q.price)) &&
+        (!q.fullDate ||
+          new Date(b.published.$date).toLocaleDateString() ===
+            new Date(q.fullDate).toLocaleDateString()) &&
+        (!q.year ||
+          new Date(b.published.$date).getFullYear() === Number(q.year)) &&
         (!q.author ||
           b.authors?.some(
             (a) => a.toLowerCase() === q.author?.toLowerCase(),
           )) &&
-        (!q.price || b.published?.price === Number(q.price)) &&
         (!q.category ||
           b.categories?.some(
             (c) => c.toLowerCase() === q.category?.toLowerCase(),
