@@ -11,11 +11,11 @@ export class BooksService {
     return this.searchBooks(query);
   }
 
-  getBookById(id: string): Book {
-    if (!id) {
+  getBookById(bookId: number): Book {
+    if (!bookId) {
       return null;
     }
-    return books.find(({ title }) => id == title);
+    return books.find(({ id }) => id == bookId);
   }
 
   searchBooks(q: any): Array<Book> {
